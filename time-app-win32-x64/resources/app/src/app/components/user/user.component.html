@@ -1,0 +1,43 @@
+<!-- Navigation -->
+<header class="p-3">
+  <img class="img-fluid" src="./assets/img/evona-logo-top-left.png"  alt="">
+  <span class="clr-lemon">{{date | date :  "HH:mm"}} </span>
+  <span>{{date | date :  "dd. MM. y."}} </span>
+</header>
+
+<!-- Page Content -->
+<div class="content">
+    <div class="float-left col-lg-3 col-ms-3 col-sm-3 col-xs-3"   *ngFor="let row of splitedGroups">
+        <div class="team-container" *ngFor="let team of row">
+          <div class="team-header">{{team.name}}</div>
+          <div class="team-members">
+            <div class="user">
+              <div *ngFor="let user of team" class="users-holder">
+                <div class="time-holder">
+                  <span class="time-stamp">
+                    <div class="fa fa-play" [ngClass]="user.reason == 1 ? 'check-in-icon' : 'check-out-icon'"></div>
+                    <div [ngClass]="user.reason == 1 ? 'clr-lemon' : 'clr-passion'">{{user.timeStamp | date: 'HH:mm'}}</div>
+                  </span>
+                </div>
+                <div class="user-holder" [ngClass]="user.reason == 1 ? 'font-weight-bold' : 'clr-gray'">{{user.firstName}} {{user.lastName}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<!-- Message -->
+
+<div class="message-dialog" *ngIf="currentUser">
+  <div class="msg-holder">
+    <div class="changed-message clr-passion">{{currentUser.reason == 1 ? 'WELCOME' : 'GOODBYE'}}</div>
+    <div class="changed-user">{{currentUser.firstName}}</div>
+  </div>
+</div>
+
+<!--End of Page Content -->
+</div>
+
+<footer>
+  <img  class="float-right p-4 mr-5 img-fluid" src="./assets/img/passion-logo-btm-right.png" alt="">
+</footer>
